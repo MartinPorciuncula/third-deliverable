@@ -26,14 +26,14 @@ const ResidentCard = ({ residenturl }) => {
           src={residentinfo?.image}
         />
         <div className="flex justify-center items-center gap- bg-dark-gray/70 w-[90px] p-[2px] rounded-full absolute bottom-6 right-1/2 translate-x-1/2 text-sm">
-          <div className={`h-[10px] aspect-square bg-green-500 rounded-full ${statusObj[residentinfo?.status]}`}></div>
+          <div className={`h-[10px] aspect-square bg-green-500 rounded-full animate-pulse ${statusObj[residentinfo?.status]}`}></div>
           {residentinfo?.status}
         </div>
       </header>
-      <section className="bg-purple border-8 border-red-wine rounded-3xl w-full p-6 relative h-[200px] -mt-14">
+      <section className="bg-purple border-8 border-red-wine rounded-3xl w-full p-6 relative -mt-14 hover:h-[250px] h-[200px] transition-all bodyCard duration-700">
         <div className="bg-lila absolute h-full w-[95%] left-0 top-0 rounded-special"></div>
         <div className="absolute w-full left-0 top-0">
-        <h3 className="bg-light-yellow text-2xl font-bold text-red-wine pb-4 pt-8 rounded-[15px] w-full text-center line-clamp-1">{residentinfo?.name}</h3>
+        <h3 className="bg-light-yellow text-2xl font-bold text-red-wine pb-4 pt-8 rounded-[15px] w-full text-center line-clamp-1 scaleCard hover:line-clamp-2 duration-700">{residentinfo?.name}</h3>
         <ul className=" text-sm text-red-wine p-4 grip grid-rows-3 gap-2">
         <ListInfoResidents residentinfo={residentinfo?.species} residentProperties={"SPECIES: "}/>
             <ListInfoResidents residentinfo={residentinfo?.origin.name} residentProperties={"ORIGIN: "}/>
