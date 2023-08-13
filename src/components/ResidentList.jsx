@@ -16,14 +16,14 @@ const ResidentList = ({residents}) => {
   }
   console.log(currentPage);
   return (
-    <section className='grid grid-row-[auto_auto] text-white place-items-center gap-20'>
-    <section className='grid gap-8'>
+    <section className='grid grid-rows-[auto_auto] text-white place-items-center gap-20 max-w-[1024px] w-full'>
+    <section className='grid gap-8 grid-cols-[repeat(auto-fit,_260px)] place-items-center w-full justify-center'>
     {
     residentsInPage.map((resident) => <ResidentCard key={resident} residenturl = {resident} />)
     }
     </section>
-    <section className='text-white mb-20'>
-     <Pagination pages ={pages} setCurrentPage ={setCurrentPage}/>
+    <section className='text-white mb-20 '>
+     <Pagination pages ={pages} setCurrentPage ={setCurrentPage} currentPage={currentPage}/>
     </section>
     </section>
   )
