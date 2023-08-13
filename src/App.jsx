@@ -28,9 +28,9 @@ function App() {
   }, [])
 
   return (
-    <main className='bg-[url(/images/bg-rm.jpg)] min-h-screen font-nunito-sans bg-cover bg-left p-4'> 
+    <main className='bg-[url(/images/bg-rm.jpg)] min-h-screen font-nunito-sans bg-cover bg-left p-4 grid grid-rows-[repeat(4,auto)] gap-8 place-items-center'> 
     <section className=''>
-    <img className="w-[300px] pt-8" src='/images/logo-ram.png'/>
+    <img className="w-[260px] pt-8" src='/images/logo-ram.png'/>
     </section>
     <LocationForm handlesubmit = {handlesubmit}/>
     <Location currentlocation ={currentlocation} />

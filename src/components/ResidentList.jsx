@@ -16,13 +16,13 @@ const ResidentList = ({residents}) => {
   }
   console.log(currentPage);
   return (
-    <section>
-    <section>
+    <section className='grid grid-row-[auto_auto] text-white place-items-center'>
+    <section className='grid gap-8'>
     {
     residentsInPage.map((resident) => <ResidentCard key={resident} residenturl = {resident} />)
     }
     </section>
-    <section>
+    <section className='text-white'>
      <Pagination pages ={pages} setCurrentPage ={setCurrentPage}/>
     </section>
     </section>
