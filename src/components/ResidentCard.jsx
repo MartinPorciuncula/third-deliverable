@@ -19,7 +19,7 @@ const ResidentCard = ({ residenturl }) => {
   }, []);
 
   return (
-    <article className="bg-red w-[260px] h-80 grid grid-rows-[auto_auto] place-items-center">
+    <article className=" w-[260px] h-80 grid grid-rows-[auto_auto] place-items-center select-none">
       <header className="relative z-10">
         <img
           className="h-[150px] aspect-square border-solid border-[8px] border-red-wine rounded-full"
@@ -30,11 +30,11 @@ const ResidentCard = ({ residenturl }) => {
           {residentinfo?.status}
         </div>
       </header>
-      <section className="bg-purple border-8 border-red-wine rounded-3xl w-full p-6 relative -mt-14 hover:h-[250px] h-[200px] transition-all bodyCard duration-700">
+      <section className="bg-purple border-8 border-red-wine rounded-3xl w-full  h-[250px] p-6 relative -mt-14 transition-all bodyCard duration-700">
         <div className="bg-lila absolute h-full w-[95%] left-0 top-0 rounded-special"></div>
         <div className="absolute w-full left-0 top-0">
-        <h3 className="bg-light-yellow text-2xl font-bold text-red-wine pb-4 pt-8 rounded-[15px] w-full text-center line-clamp-1 scaleCard hover:line-clamp-2 duration-700">{residentinfo?.name}</h3>
-        <ul className=" text-sm text-red-wine p-4 grip grid-rows-3 gap-2">
+        <h3 className="bg-light-yellow text-2xl h-[130px] flex items-center justify-center font-bold text-red-wine pb-4 pt-[70px] rounded-[15px] w-full text-center scaleCard  duration-700">{residentinfo?.name}</h3>
+        <ul className=" text-sm text-red-wine p-4 grid grid-rows-3 gap-2">
         <ListInfoResidents residentinfo={residentinfo?.species} residentProperties={"SPECIES: "}/>
             <ListInfoResidents residentinfo={residentinfo?.origin.name} residentProperties={"ORIGIN: "}/>
             <ListInfoResidents residentinfo={residentinfo?.episode.length} residentProperties={"TIMES APPEAR: "}/>

@@ -6,41 +6,57 @@ import {GetrandomDimensions} from "./utils/randoms"
 import ResidentList from './components/ResidentList'
 import LocationForm from './components/LocationForm'
 import ModalEmptySearch from "./components/ModalEmptySearch"
+import { useCatchErrors } from './utils/hooks/useCatchErrors'
+import FirstScreen from './components/FirstScreen'
 
 const EMPTY_DIMENSION =12
 
 function App() {
   const [currentlocation, setCurrentlocation] = useState(null)
-  const [EmptySearch, setEmptySearch] = useState(false)
+  const {emptysearch,emptyError, handleCloseModal, error404, error404Modal, loaderScreen,isLoading}= useCatchErrors(true)
   const fetchdimension = (idLocation) =>{
     const URL = `https://rickandmortyapi.com/api/location/${idLocation}`
 
-  axios.get(URL)
-  .then(({ data }) => setCurrentlocation(data))
-  .catch((err) => console.log(err));
+  
+   
+      axios
+        .get(URL)
+        .then(({ data }) => {setCurrentlocation(data)
+          loaderScreen()})
+        .catch((err) => {
+          console.log(err);
+          error404();
+        });
   }
+
+
   const handlesubmit = (e) => {
     e.preventDefault()
     const newlocation = e.target.newlocation.value
-    newlocation === "" ? setEmptySearch(true) : fetchdimension(newlocation)
-    newlocation === "" ? setEmptySearch(true) & fetchdimension(EMPTY_DIMENSION) : fetchdimension(newlocation)
+    newlocation === "" ? emptyError(true) & fetchdimension(EMPTY_DIMENSION) : fetchdimension(newlocation)
     }
 
-    const handleCloseModal = () => {
-      setEmptySearch(false)
+    const staticDimension = () =>{
+      fetchdimension(EMPTY_DIMENSION)
     }
 
   useEffect(() => {
-    const Randomdimension = GetrandomDimensions(126)
+    staticDimension()
+    setTimeout(() => {
+      const Randomdimension = GetrandomDimensions(126)
     fetchdimension(Randomdimension)
+    }, 2000);
   }, [])
 
   return (
-    <main className='bg-[url(/images/bg-rm.jpg)] min-h-screen font-nunito-sans bg-cover p-4 grid grid-rows-[repeat(4,auto)] gap-8 place-items-center relative bg-center overflow-hidden '> 
+    <main className='bg-[url(/images/bg-rm2.png)] min-h-screen font-nunito-sans bg-cover px-4 grid grid-rows-[repeat(4,auto)] gap-8 place-items-center relative bg-center overflow-hidden '> 
     <section className=''>
     <img className="w-[260px] pt-8 min-[500px]:w-[350px]" src='/images/logo-ram.png'/>
+    
     </section>
-   <ModalEmptySearch handleCloseModal={handleCloseModal} EmptySearch={EmptySearch} />
+   {!isLoading && <FirstScreen />}
+   <ModalEmptySearch handleCloseModal={handleCloseModal} errorModal={emptysearch} title={"¿Acaso estás ciego?"} body={"Elige una dimensión"} footer={"aquí no hay nada"} img={"/images/ram-modal-def.jpg"}/>
+   <ModalEmptySearch handleCloseModal={handleCloseModal} errorModal={error404Modal} title={"Alguien saboteo la pistola de portales"} body={"¿fuiste tu?"} footer={"ERROR 404 PAGE NOT FOUND"} img={"/images/ram-error-404.png"}/>
     <LocationForm handlesubmit = {handlesubmit}/>
     <Location currentlocation ={currentlocation} />
     <ResidentList residents ={currentlocation?.residents ?? []}/>
