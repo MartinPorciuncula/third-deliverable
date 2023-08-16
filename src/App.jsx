@@ -36,6 +36,11 @@ function App() {
     newlocation === "" ? emptyError(true) & fetchdimension(EMPTY_DIMENSION) : fetchdimension(newlocation)
     }
 
+    const btnGoToUp = () => {
+      const buttonUp = document.querySelector('.bx-chevron-up-circle')
+      buttonUp.addEventListener('click', () => window.scrollTo(0, 0))
+    }
+
     const staticDimension = () =>{
       fetchdimension(EMPTY_DIMENSION)
     }
@@ -60,6 +65,9 @@ function App() {
     <LocationForm handlesubmit = {handlesubmit}/>
     <Location currentlocation ={currentlocation} />
     <ResidentList residents ={currentlocation?.residents ?? []}/>
+    <div className="text-red-wine bg-lila rounded-full h-10 aspect-square flex justify-center items-center border-4 border-red-wine fixed bottom-4 right-4 cursor-pointer" onClick={btnGoToUp}>
+        <i className='bx bx-chevron-up-circle text-3xl'></i>
+      </div>
     </main>
   )
 }
