@@ -14,7 +14,6 @@ const ResidentList = ({residents}) => {
     pages.push(i)
     
   }
-  console.log(currentPage);
   return (
     <section className='grid grid-rows-[auto_auto] text-white place-items-center gap-20 max-w-[1024px] w-full'>
     <section className='grid gap-8 grid-cols-[repeat(auto-fit,_260px)] place-items-center w-full justify-center'>
